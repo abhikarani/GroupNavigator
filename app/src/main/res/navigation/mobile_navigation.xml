@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.yashkasera.groupnavigator.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_groupChatFragment"
+            app:destination="@id/groupChatFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newGroupFragment"
+            app:destination="@id/newGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupChatFragment"
+        android:name="com.yashkasera.groupnavigator.ui.group_chat.GroupChatFragment"
+        android:label="GroupChatFragment"
+        tools:layout="@layout/fragment_group_chat" >
+        <argument
+            android:name="group"
+            app:argType="com.yashkasera.groupnavigator.repository.model.Group" />
+    </fragment>
+    <fragment
+        android:id="@+id/newGroupFragment"
+        android:name="com.yashkasera.groupnavigator.ui.new_group.NewGroupFragment"
+        android:label="NewGroupFragment"
+        tools:layout="@layout/fragment_new_group" />
+</navigation>
