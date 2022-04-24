@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.yashkasera.groupnavigator.repository.model.MessageItem
 import com.yashkasera.groupnavigator.ui.group_chat.view_holder.MessageViewHolder
+import com.yashkasera.groupnavigator.util.ItemClickListener
 
 /**
  * @author yashkasera
@@ -12,6 +13,7 @@ import com.yashkasera.groupnavigator.ui.group_chat.view_holder.MessageViewHolder
  */
 class MessageAdapter :
     ListAdapter<MessageItem, MessageViewHolder>(MessageDiffCallback) {
+    private lateinit var itemClickListener: ItemClickListener<MessageItem>
 
     object MessageDiffCallback : DiffUtil.ItemCallback<MessageItem>() {
         override fun areItemsTheSame(oldItem: MessageItem, newItem: MessageItem): Boolean =
@@ -34,7 +36,9 @@ class MessageAdapter :
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) =
-        holder.bind(getItem(position))
+        holder.bind(getItem(position)).also {
+            holder.setOnItemClickListener(itemClickListener)
+        }
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
@@ -44,6 +48,10 @@ class MessageAdapter :
             is MessageItem.DateMessage -> DATE
             is MessageItem.Loading -> LOADING
         }
+    }
+
+    fun setListener(itemClickListener: ItemClickListener<MessageItem>) {
+        this.itemClickListener = itemClickListener
     }
 
     companion object {

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.yashkasera.groupnavigator.databinding.FragmentGroupChatBinding
+import com.yashkasera.groupnavigator.repository.model.MessageItem
+import com.yashkasera.groupnavigator.util.ItemClickListener
 
 /**
  * @author yashkasera
@@ -35,6 +37,12 @@ class GroupChatFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.group = args.group
         binding.viewModel = viewModel
+        viewModel.messageAdapter.setListener(object : ItemClickListener<MessageItem> {
+            override fun onItemClick(v: View?, item: MessageItem) {
+                findNavController().navigate(GroupChatFragmentDirections.actionGroupChatFragmentToMapsFragment(args.group))
+            }
+
+        })
         binding.back.setOnClickListener { findNavController().navigateUp() }
     }
 }

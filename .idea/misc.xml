@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/fragment_group_chat.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_group_info.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19829059829059828" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.19837537409149208" />
         <entry key="app/src/main/res/layout/fragment_new_grouo.xml" value="0.19658119658119658" />
         <entry key="app/src/main/res/layout/fragment_new_group.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
@@ -28,7 +29,7 @@
         <entry key="app/src/main/res/layout/item_group.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_image_message.xml" value="0.19829059829059828" />
         <entry key="app/src/main/res/layout/item_loading.xml" value="0.19829059829059828" />
-        <entry key="app/src/main/res/layout/item_location_message.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_location_message.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_location_sent.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_member.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_text_message.xml" value="0.5" />

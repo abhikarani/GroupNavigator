@@ -25,10 +25,22 @@
         <argument
             android:name="group"
             app:argType="com.yashkasera.groupnavigator.repository.model.Group" />
+        <action
+            android:id="@+id/action_groupChatFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newGroupFragment"
         android:name="com.yashkasera.groupnavigator.ui.new_group.NewGroupFragment"
         android:label="NewGroupFragment"
         tools:layout="@layout/fragment_new_group" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.yashkasera.groupnavigator.ui.group_map.MapsFragment"
+        android:label="MapsFragment"
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="group"
+            app:argType="com.yashkasera.groupnavigator.repository.model.Group" />
+    </fragment>
 </navigation>

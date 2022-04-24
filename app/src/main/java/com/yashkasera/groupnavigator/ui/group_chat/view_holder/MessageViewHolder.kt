@@ -10,6 +10,7 @@ import com.yashkasera.groupnavigator.databinding.ItemLoadingBinding
 import com.yashkasera.groupnavigator.databinding.ItemLocationMessageBinding
 import com.yashkasera.groupnavigator.databinding.ItemTextMessageBinding
 import com.yashkasera.groupnavigator.repository.model.MessageItem
+import com.yashkasera.groupnavigator.util.ItemClickListener
 
 /**
  * @author yashkasera
@@ -17,13 +18,20 @@ import com.yashkasera.groupnavigator.repository.model.MessageItem
  */
 sealed class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     abstract fun bind(messageItem: MessageItem)
+    abstract fun setOnItemClickListener(listener: ItemClickListener<MessageItem>)
 
     class TextViewHolder(private val binding: ItemTextMessageBinding) :
         MessageViewHolder(binding.root) {
+        private lateinit var clickListener: ItemClickListener<MessageItem>
+
         override fun bind(messageItem: MessageItem) {
             (binding.card.layoutParams as ConstraintLayout.LayoutParams).horizontalBias =
                 if (messageItem.sender == null) 1.0f else 0.0f
             binding.messageItem = messageItem as MessageItem.TextMessage
+        }
+
+        override fun setOnItemClickListener(listener: ItemClickListener<MessageItem>) {
+            this.clickListener = listener
         }
 
         companion object {
@@ -40,10 +48,15 @@ sealed class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     class ImageViewHolder(private val binding: ItemImageMessageBinding) :
         MessageViewHolder(binding.root) {
+        private lateinit var clickListener: ItemClickListener<MessageItem>
         override fun bind(messageItem: MessageItem) {
             (binding.card.layoutParams as ConstraintLayout.LayoutParams).horizontalBias =
                 if (messageItem.sender == null) 1.0f else 0.0f
             binding.messageItem = messageItem as MessageItem.ImageMessage
+        }
+
+        override fun setOnItemClickListener(listener: ItemClickListener<MessageItem>) {
+            clickListener = listener
         }
 
         companion object {
@@ -60,10 +73,17 @@ sealed class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     class LocationViewHolder(private val binding: ItemLocationMessageBinding) :
         MessageViewHolder(binding.root) {
+        private lateinit var clickListener: ItemClickListener<MessageItem>
+
         override fun bind(messageItem: MessageItem) {
             (binding.card.layoutParams as ConstraintLayout.LayoutParams).horizontalBias =
                 if (messageItem.sender == null) 1.0f else 0.0f
             binding.messageItem = messageItem as MessageItem.LocationMessage
+            binding.viewLocation.setOnClickListener { clickListener.onItemClick(it, messageItem) }
+        }
+
+        override fun setOnItemClickListener(listener: ItemClickListener<MessageItem>) {
+            clickListener = listener
         }
 
         companion object {
@@ -79,8 +99,13 @@ sealed class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     class DateViewHolder(parent: ViewGroup) : MessageViewHolder(parent) {
+        private lateinit var clickListener: ItemClickListener<MessageItem>
         override fun bind(messageItem: MessageItem) {
 
+        }
+
+        override fun setOnItemClickListener(listener: ItemClickListener<MessageItem>) {
+            clickListener = listener
         }
 
         companion object {
@@ -96,8 +121,14 @@ sealed class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     class LoadingViewHolder(binding: ItemLoadingBinding) : MessageViewHolder(binding.root) {
+        private lateinit var clickListener: ItemClickListener<MessageItem>
+
         override fun bind(messageItem: MessageItem) {
 
+        }
+
+        override fun setOnItemClickListener(listener: ItemClickListener<MessageItem>) {
+            clickListener = listener
         }
 
         companion object {

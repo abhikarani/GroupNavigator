@@ -37,5 +37,17 @@
                 tools:text="@tools:sample/lorem/random" />
 
         </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{messageItem.getTime()}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
+            app:layout_constraintEnd_toEndOf="@id/card"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toBottomOf="@id/card"
+            tools:text="@tools:sample/date/hhmmss" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
